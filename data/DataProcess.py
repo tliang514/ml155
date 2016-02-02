@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.preprocessing import normalize
 from sklearn.preprocessing import scale
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import TfidfTransformer 
 
 class DataProcess:
     #class used to preprocess data
@@ -54,7 +54,7 @@ class DataProcess:
         elif self.scale==None:
             scaler = normer
         elif self.scale=='minmax':
-            scaler = MinMaxScaler(normer, copy=True)
+            scaler = MinMaxScaler().fit_transform(normer)
         
         return scaler
     
@@ -72,3 +72,26 @@ class DataProcess:
         tfidf = transformer.fit_transform(X)
         return tfidf.toarray()
 
+
+
+#Test
+if __name__ == '__main__':
+	from DataProcess import DataProcess
+	import numpy as np
+	x = np.array([[1.0,2,3],[4.1,5,6]])
+	print x
+
+	print 'Test norm'
+	clf = DataProcess(norm='l2', scale=None)
+	print clf.transform(x)
+
+	print 'Test std scale'
+	clf = DataProcess(norm=None, scale='std')
+	print clf.transform(x)
+
+	print 'Test minmax scale'
+	clf = DataProcess(norm=None, scale='minmax')
+	print clf.transform(x)
+
+	print 'Test tfidf'
+	print clf.tfidf(x)
