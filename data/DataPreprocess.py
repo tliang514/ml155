@@ -25,6 +25,7 @@ with open('testing_data.txt','r') as test_f:
 x_test = np.asarray(testlist[1:])
 x_test = np.asarray(x_test, dtype='float64')
 
+'''
 from sklearn import preprocessing
 x = np.zeros([x_train.shape[0]+x_test.shape[0], x_train.shape[1]])
 x[0:x_train.shape[0],:] = x_train
@@ -33,4 +34,4 @@ x_norm = preprocessing.normalize(x, norm='l2')
 x_norm_scale = preprocessing.scale(x_norm)
 x_train = x_norm_scale[0:x_train.shape[0],:]
 x_test = x_norm_scale[x_train.shape[0]:,:]
-
+'''
