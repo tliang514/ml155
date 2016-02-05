@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/yunxuanli/Documents/Caltechphd/courses/MachineLearning/sentimentanalysis/code/ml155')
+sys.path.append('/home/yunxuanli/kagglecs155/ml155')
 
 from data.DataPreprocess import *
 from data.DataProcess import DataProcess

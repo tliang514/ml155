@@ -1,5 +1,6 @@
 import sys
-sys.path.append('/Users/yunxuanli/Documents/Caltechphd/courses/MachineLearning/sentimentanalysis/code/ml155')
+sys.path.append('/home/yunxuanli/kagglecs155/ml155')
+
 
 from data.DataPreprocess import *
 from data.DataProcess import DataProcess
@@ -20,3 +21,16 @@ for i in range(len(Max_depth)):
 		H_dt.append(clf)
 
 print 'Decision Tree training Done\n'
+
+if __name__ == '__main__':
+	import csv
+	print 'writing into file...'
+
+	with open('H_dt.txt','w') as f_hdt:
+		a = csv.writer(f_hdt, delimiter='\n')
+		a.writerow(H_dt)
+	with open('score_dt.txt','w') as f_sdt:
+		b = csv.writer(f_sdt, delimiter='\n')
+		b.writerow(score_dt)
+	
+	print 'writing done!'

@@ -4,7 +4,7 @@
 
 # -*- coding: utf-8 -*-
 import os
-os.chdir('/Users/yunxuanli/Documents/Caltechphd/courses/MachineLearning/sentimentanalysis/code/ml155/data')
+os.chdir('/home/yunxuanli/kagglecs155/ml155/data')
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
