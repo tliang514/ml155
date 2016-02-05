@@ -16,7 +16,7 @@ Min_samples_split=[2,3,4,5,7,10]
 for i in range(len(Max_depth)):
 	for j in range(len(Min_samples_split)):
 		clf = DecisionTreeClassifier(max_depth=Max_depth[i], min_samples_split=Min_samples_split[j])
-		score_dt.append(cross_val_score(clf, x_train, y_train))
+		score_dt.append(cross_val_score(clf, x_train, y_train).mean())
 		H_dt.append(clf)
 
 print 'Decision Tree training Done\n'
