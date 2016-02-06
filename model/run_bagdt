@@ -1,0 +1,13 @@
+executable = bagdt.py
+
+universe = vanilla
+output = bagdt.out
+error = bagdt.error
+log = bagdt.log
+
+getenv = True
+
+accounting_group = group_babar
+accounting_group_user = yunxuanli
+
+queue

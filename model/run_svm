@@ -1,0 +1,14 @@
+executable = svm.py
+
+universe = vanilla
+output = svm.out
+error = svm.error
+log = svm.log
+
+getenv = True
+
+accounting_group = group_babar
+accounting_group_user = yunxuanli
+
+queue
+

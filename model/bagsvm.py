@@ -1,3 +1,4 @@
+#! /nfs/raid13/babar/software/anaconda/bin/python
 import sys
 sys.path.append('/home/yunxuanli/kagglecs155/ml155')
 
@@ -9,6 +10,12 @@ from sklearn.cross_validation import cross_val_score
 from sklearn import svm
 from sklearn.ensemble import BaggingClassifier
 
+#preprocess
+pre = DataProcess(norm='l2', scale='std')
+x_train = pre.transform(x_train)
+x_test = pre.transform(x_test)
+
+#training
 H_bagsvm = []
 score_bagsvm = []
 print 'Start training bagsvm...'
@@ -24,3 +31,14 @@ for i in range(len(Max_samples)):
 			score_bagsvm.append(cross_val_score(clf, x_train, y_train).mean())
 
 print 'bagsvm training done!'
+
+if __name__ == '__main__':
+        import csv
+        print 'writing into file...'
+
+        joblib.dump(H_bagsvm, 'H_bagsvm.pkl')
+        with open('score_bagsvm.txt','w') as f_sbagsvm:
+                b = csv.writer(f_sbagsvm, delimiter='\n')
+                b.writerow(score_bagsvm)
+
+        print 'writing done!'

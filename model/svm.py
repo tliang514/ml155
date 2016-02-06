@@ -1,3 +1,5 @@
+#! /nfs/raid13/babar/software/anaconda/bin/python
+
 import sys
 sys.path.append('/home/yunxuanli/kagglecs155/ml155')
 
@@ -7,7 +9,14 @@ from data.DataProcess import DataProcess
 import numpy as np
 from sklearn.cross_validation import cross_val_score
 from sklearn import svm
+from sklearn.externals import joblib
 
+#preprocess
+pre = DataProcess(norm='l2', scale='std')
+x_train = pre.transform(x_train)
+x_test = pre.transform(x_test)
+
+#training
 H_svm = []
 score_svm = []
 print 'Start training SVM candidates...'
@@ -21,3 +30,14 @@ for i in range(len(c)):
 		H_svm.append(clf)
 print 'SVM training Done\n'
 
+
+if __name__ == '__main__':
+        import csv
+        print 'writing into file...'
+
+        joblib.dump(H_svm, 'H_svm.pkl')
+        with open('score_svm.txt','w') as f_ssvm:
+                b = csv.writer(f_ssvm, delimiter='\n')
+                b.writerow(score_svm)
+
+        print 'writing done!'

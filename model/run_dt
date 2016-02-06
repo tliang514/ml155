@@ -1,0 +1,13 @@
+executable = dt.py
+
+universe = vanilla
+output = dt.out
+error = dt.error
+log = dt.log
+
+getenv = True
+
+accounting_group = group_babar
+accounting_group_user = yunxuanli
+
+queue

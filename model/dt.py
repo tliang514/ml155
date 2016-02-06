@@ -1,3 +1,5 @@
+#! /nfs/raid13/babar/software/anaconda/bin/python
+
 import sys
 sys.path.append('/home/yunxuanli/kagglecs155/ml155')
 
@@ -8,7 +10,14 @@ from data.DataProcess import DataProcess
 import numpy as np
 from sklearn.cross_validation import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.externals import joblib
 
+#preprocess
+pre = DataProcess(norm='l2', scale='std')
+x_train = pre.transform(x_train)
+x_test = pre.transform(x_test)
+
+#training
 H_dt = []
 score_dt = []
 print 'Start training DT candidates...'
@@ -26,9 +35,7 @@ if __name__ == '__main__':
 	import csv
 	print 'writing into file...'
 
-	with open('H_dt.txt','w') as f_hdt:
-		a = csv.writer(f_hdt, delimiter='\n')
-		a.writerow(H_dt)
+	joblib.dump(H_dt, 'H_dt.pkl')
 	with open('score_dt.txt','w') as f_sdt:
 		b = csv.writer(f_sdt, delimiter='\n')
 		b.writerow(score_dt)

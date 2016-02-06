@@ -1,3 +1,4 @@
+#! /nfs/raid13/babar/software/anaconda/bin/python
 import sys
 sys.path.append('/home/yunxuanli/kagglecs155/ml155')
 
@@ -9,6 +10,12 @@ from sklearn.cross_validation import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import BaggingClassifier
 
+#preprocess
+pre = DataProcess(norm='l2', scale='std')
+x_train = pre.transform(x_train)
+x_test = pre.transform(x_test)
+
+#training
 H_bagrf = []
 score_bagrf = []
 print 'Start training bagrf...'
@@ -25,3 +32,14 @@ for i in range(len(N_estimators1)):
 			score_bagrf.append(cross_val_score(clf, x_train, y_train).mean())
 
 print 'bagrf training done!'
+
+if __name__ == '__main__':
+        import csv
+        print 'writing into file...'
+
+        joblib.dump(H_bagrf, 'H_bagrf.pkl')
+        with open('score_bagrf.txt','w') as f_sbagrf:
+                b = csv.writer(f_sbagrf, delimiter='\n')
+                b.writerow(score_bagrf)
+
+        print 'writing done!'

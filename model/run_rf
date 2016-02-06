@@ -1,0 +1,13 @@
+executable = rf.py
+
+universe = vanilla
+output = rf.out
+error = rf.error
+log = rf.log
+
+getenv = True
+
+accounting_group = group_babar
+accounting_group_user = yunxuanli
+
+queue
